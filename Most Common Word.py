@@ -1,5 +1,7 @@
+import pytest
 import re
 from typing import List
+
 
 class Solution:
     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
@@ -21,4 +23,10 @@ class Solution:
 
 
 sol = Solution()
-print(sol.mostCommonWord(paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.", banned = ["hit"]))
+
+
+@pytest.mark.parametrize("paragraph, banned, answer", [
+    ("Bob hit a ball, the hit BALL flew far after it was hit.", ["hit"], "ball"
+     )])
+def test_solution(paragraph, banned, answer):
+    assert sol.mostCommonWord(paragraph, banned) == answer
